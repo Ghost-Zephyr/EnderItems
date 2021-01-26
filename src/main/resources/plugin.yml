@@ -3,7 +3,11 @@ main: dev.bitsnthings.mc.eitems.EnderItems
 version: 1.0
 api-version: 1.13
 commands:
-  eitems:
+  eitem:
     description: Give a player an ender item or list all available ender items.
-    usage: /eitems <item> [player]
+    usage: /eitem <item> [player]
+    permission: enderitems.eitem
+  eitems:
+    description: Command for interacting with the Ender Items plugin.
+    usage: /eitems
     permission: enderitems.eitems

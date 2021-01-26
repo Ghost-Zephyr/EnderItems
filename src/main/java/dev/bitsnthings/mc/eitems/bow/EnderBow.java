@@ -23,7 +23,7 @@ public final class EnderBow {
   public static final String USE_PERM = "enderitems.bow.use";
   public static final String GIVE_SELF_PERM = "enderitems.bow.give.self";
   public static final String GIVE_OTHERS_PERM = "enderitems.bow.give.others";
-  public static final ArrayList<Permission> perms = new ArrayList<>();
+  public static ArrayList<Permission> perms = new ArrayList<>();
 
   private static final String[] ebowCmdSynonymsArr = new String[] {"ebow","enderbow","ender_bow"};
   public static final List<String> ebowCmdSynonyms = Arrays.asList(ebowCmdSynonymsArr);

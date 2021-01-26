@@ -14,12 +14,14 @@ public class EnderItems extends JavaPlugin {
   private final Logger logger = Logger.getLogger("EnderItems");
   private static ArrayList<ArrayList<Permission>> allperms = new ArrayList<>();
   private static EnderItems plugin;
+
   @Override
   public void onEnable() {
     plugin = this;
 
     Bukkit.getPluginManager().registerEvents(new EbowEvents(), this);
     this.getCommand("eitem").setExecutor(new EitemCommand());
+    //this.getCommand("eitems").setExecutor(new EitemsCommand());
 
     if (!EnderBow.registerEbowRecipes()) logger.warning("Failed to register Ender Bow recipes!");
     else logger.info("Registered Ender Bow recipes.");
