@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 public class EitemCommand implements CommandExecutor {
   Logger log = EnderItems.getInstance().getLogger();
+  String prefix = String.format("[%sEnderItems%s]%s", ChatColor.LIGHT_PURPLE, ChatColor.RESET, ChatColor.AQUA);
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     Player receiver;
@@ -20,7 +21,7 @@ public class EitemCommand implements CommandExecutor {
         switch (args.length) {
           case 1:
             if (!(sender instanceof Player)) {
-              sender.sendMessage(ChatColor.RED + "Can't give an ender bow to the console!");
+              answerWithPrefix(sender, ChatColor.RED + "Can't give an ender bow to the console!");
               return false;
             }
             if (!sender.hasPermission(EnderBow.GIVE_SELF_PERM)) return false;
@@ -33,7 +34,7 @@ public class EitemCommand implements CommandExecutor {
           default: return false;
         }
         receiver.getInventory().addItem(EnderBow.createEbow());
-        sender.sendMessage(String.format("Gave %s an ender bow.", receiver.getDisplayName()));
+        answerWithPrefix(sender, String.format("Gave %s an ender bow.", receiver.getDisplayName()));
         if (sender.getName() != "CONSOLE") {
           String receiverName = receiver.getDisplayName();
           if (sender.getName() == receiver.getDisplayName()) receiverName = "self";
@@ -41,9 +42,12 @@ public class EitemCommand implements CommandExecutor {
         }
         return true;
       } else {
-        sender.sendMessage(String.format("%sGotta have a valid item name!", ChatColor.RED));
+        answerWithPrefix(sender, String.format("%sGotta have a valid item name!", ChatColor.RED));
         return true;
       }
     } else return false;
+  }
+  private void answerWithPrefix(CommandSender sender, String message) {
+    sender.sendMessage(String.format("%s %s", prefix, message));
   }
 }
