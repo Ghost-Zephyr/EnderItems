@@ -25,8 +25,7 @@ public final class EnderBow {
   public static final String GIVE_OTHERS_PERM = "enderitems.bow.give.others";
   public static ArrayList<Permission> perms = new ArrayList<>();
 
-  private static final String[] ebowCmdSynonymsArr = new String[] {"ebow","enderbow","ender_bow"};
-  public static final List<String> ebowCmdSynonyms = Arrays.asList(ebowCmdSynonymsArr);
+  public static final List<String> ebowSynonyms = Arrays.asList(new String[] {"bow","ebow","enderbow","ender_bow"});
 
   private EnderBow() {}
 

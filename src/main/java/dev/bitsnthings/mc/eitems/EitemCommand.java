@@ -7,13 +7,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.Bukkit;
 
+import java.util.logging.Logger;
+
 public class EitemCommand implements CommandExecutor {
+  Logger log = EnderItems.getInstance().getLogger();
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     Player receiver;
     if (args.length > 0 && args.length < 3) {
       String itemName = args[0].toLowerCase();
-      if (EnderBow.ebowCmdSynonyms.contains(itemName)) {
+      if (EnderBow.ebowSynonyms.contains(itemName)) {
         switch (args.length) {
           case 1:
             if (!(sender instanceof Player)) {
@@ -32,12 +35,15 @@ public class EitemCommand implements CommandExecutor {
         receiver.getInventory().addItem(EnderBow.createEbow());
         sender.sendMessage(String.format("Gave %s an ender bow.", receiver.getDisplayName()));
         if (sender.getName() != "CONSOLE") {
-          String recv = receiver.getDisplayName();
-          if (sender.getName() == receiver.getDisplayName()) recv = "himself";
-          EnderItems.getInstance().getLogger().info(String.format("%s gave %s an ender bow.", sender.getName(), recv));
+          String receiverName = receiver.getDisplayName();
+          if (sender.getName() == receiver.getDisplayName()) receiverName = "self";
+          log.info(String.format("%s gave %s an ender bow.", sender.getName(), receiverName));
         }
         return true;
-      } else return false;
+      } else {
+        sender.sendMessage(String.format("%sGotta have a valid item name!", ChatColor.RED));
+        return true;
+      }
     } else return false;
   }
 }
